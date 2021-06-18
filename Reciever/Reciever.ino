@@ -1,5 +1,8 @@
-#include "HCPCA9685.h"
-#include "math.h"
+#include <HCPCA9685.h>
+#include <math.h>
+#include <SPI.h>
+#include <nRF24L01.h>
+#include <RF24.h>
 
 /* I2C slave address for the device/module. Default I2C address is 0x40 */
 #define  I2CAdd 0x40
