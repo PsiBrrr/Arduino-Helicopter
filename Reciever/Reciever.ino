@@ -17,7 +17,9 @@ void setup() {
 }
 
 void loop() {
-  HCPCA9685.Servo(0, 0); //Servo 0, Position 0
+  HCPCA9685.Servo(0, calculateHeightL1(0, 0, 0, 0)); //Servo 0 (440 is max)
+  HCPCA9685.Servo(1, calculateHeightL2(0, 0, 0, 0)); //Servo 1
+  HCPCA9685.Servo(2, calculateHeightL3(0, 0, 0, 0)); //Servo 2
   delay(10);
 }
 
@@ -37,4 +39,40 @@ double calculateHeightL1(double phi, double theta, double H, double R){
   L1 = (D - nx * x1 - ny * y1) / nz;
 
   return L1;
+}
+
+double calculateHeightL2(double phi, double theta, double H, double R){
+  const double phi2 = 120 * PI / 180;
+  double L2;
+  
+  double x2 = R * cos(phi2);
+  double y2 = R * sin(phi2);
+
+  double nx = cos(theta) * sin(phi);
+  double ny = sin(theta) * sin(phi);
+  double nz = cos(phi);
+
+  double D = nz * H;
+
+  L2 = (D - nx * x2 - ny * y2) / nz;
+
+  return L2;
+}
+
+double calculateHeightL3(double phi, double theta, double H, double R){
+  const double phi3 = 240 * PI / 180;
+  double L3;
+  
+  double x3 = R * cos(phi3);
+  double y3 = R * sin(phi3);
+
+  double nx = cos(theta) * sin(phi);
+  double ny = sin(theta) * sin(phi);
+  double nz = cos(phi);
+
+  double D = nz * H;
+
+  L3 = (D - nx * x3 - ny * y3) / nz;
+
+  return L3;
 }
